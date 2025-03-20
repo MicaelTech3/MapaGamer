@@ -169,6 +169,32 @@ video {
     color: #f00;
 }
 
+/* Styles for Toggle Button */
+.toggle-list-btn {
+    display: none; /* Hidden by default on desktop */
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+}
+
+.toggle-list-btn.blue {
+    border: 2px solid #00f;
+}
+
+.toggle-list-btn.red {
+    border: 2px solid #f00;
+}
+
+.toggle-list-btn:hover {
+    background-color: #444;
+}
+
 /* Styles for Game List */
 .game-list {
     width: 150px;
@@ -305,7 +331,7 @@ video {
     }
 
     .hologate-section {
-        flex-direction: column-reverse; /* List above the arena */
+        flex-direction: column; /* List below the arena */
     }
 
     .pistol-hype-section {
@@ -359,9 +385,43 @@ video {
         font-size: 20px;
     }
 
+    /* Show toggle buttons and hide game lists by default on mobile */
+    .toggle-list-btn {
+        display: block;
+    }
+
     .game-list {
+        display: none; /* Hidden by default on mobile */
         width: 100%; /* Full width on mobile */
         max-width: 250px;
+    }
+
+    /* Hologate game list specific styles for mobile */
+    .game-list.left {
+        position: absolute; /* Position over the arena */
+        bottom: 50px; /* Position above the toggle button (which is below the arena) */
+        left: 0;
+        width: 100%; /* Full width of the arena */
+        max-width: 250px; /* Match arena width */
+        height: 150px; /* Fixed height for scrolling */
+        overflow-y: auto; /* Enable vertical scrolling */
+        z-index: 10; /* Ensure it overlays the circles */
+        background-color: rgba(51, 51, 51, 0.95); /* Slightly transparent background */
+        border: 2px solid #00f; /* Blue border */
+    }
+
+    /* Pistol Hype game list specific styles for mobile */
+    .game-list.right {
+        position: absolute; /* Position over the arena */
+        bottom: 50px; /* Position above the toggle button (which is below the arena) */
+        left: 0;
+        width: 100%; /* Full width of the arena */
+        max-width: 250px; /* Match arena width */
+        height: 150px; /* Fixed height for scrolling */
+        overflow-y: auto; /* Enable vertical scrolling */
+        z-index: 10; /* Ensure it overlays the circles */
+        background-color: rgba(51, 51, 51, 0.95); /* Slightly transparent background */
+        border: 2px solid #f00; /* Red border to match Pistol Hype theme */
     }
 
     .game-list h3 {

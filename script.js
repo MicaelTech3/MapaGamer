@@ -10,8 +10,8 @@ const attractionsData = {
                         <div class="circle blue">1</div>
                         <div class="circle blue">3</div>
                     </div>
-                    <div class="game-list left">
-                        <h3>JOGOS HOLOGATE</h3>
+                    <button class="toggle-list-btn blue" onclick="toggleGameList('hologate-list')">JOGOS HOLOGATE</button>
+                    <div class="game-list left" id="hologate-list">
                         <div class="game-item" onclick="playGame('Pronto para missão?')">
                             <span class="play-icon">▶</span> ZUMBYTE
                         </div>
@@ -34,7 +34,8 @@ const attractionsData = {
                         <div class="circle red">1</div>
                         <div class="circle red">3</div>
                     </div>
-                    <div class="game-list right">
+                    <button class="toggle-list-btn red" onclick="toggleGameList('pistol-list')">PISTOL WHIP</button>
+                    <div class="game-list right" id="pistol-list">
                         <h3>PISTOL WHIP</h3>
                         <div class="game-item" onclick="playGame('Pistol Whip')">
                             <span class="play-icon">▶</span> PISTOL WHIP
@@ -122,4 +123,13 @@ function closeVideoModal() {
     const video = document.getElementById('game-video');
     video.pause();
     modal.style.display = 'none';
+}
+
+function toggleGameList(listId) {
+    const list = document.getElementById(listId);
+    if (list.style.display === 'block') {
+        list.style.display = 'none';
+    } else {
+        list.style.display = 'block';
+    }
 }
