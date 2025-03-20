@@ -14,6 +14,14 @@ body {
 
 h1 {
     margin-bottom: 20px;
+    font-size: 2rem; /* Default for desktop */
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .buttons button {
@@ -187,10 +195,6 @@ video {
     text-align: left;
 }
 
-.game-list.right h3 {
-    text-transform: lowercase;
-}
-
 .game-item {
     display: flex;
     align-items: center;
@@ -260,4 +264,136 @@ video {
 
 #video-title {
     margin-bottom: 15px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 1.5rem; /* Smaller title on tablets */
+    }
+
+    .buttons button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .sections {
+        flex-direction: column; /* Stack arenas vertically on smaller screens */
+        align-items: center;
+        gap: 40px;
+    }
+
+    .hologate-section, .pistol-hype-section {
+        width: 300px; /* Reduce arena size for tablets */
+        height: 300px;
+    }
+
+    .circle {
+        width: 80px; /* Smaller circles */
+        height: 80px;
+        font-size: 24px;
+    }
+
+    .game-list.left {
+        position: static; /* Remove absolute positioning */
+        margin-bottom: 20px; /* Add spacing below the list */
+    }
+
+    .game-list.right {
+        position: static; /* Remove absolute positioning */
+        margin-top: 20px; /* Add spacing above the list */
+    }
+
+    .hologate-section {
+        flex-direction: column-reverse; /* List above the arena */
+    }
+
+    .pistol-hype-section {
+        flex-direction: column; /* List below the arena */
+    }
+
+    .elevator {
+        top: 10px;
+        width: 80px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+    }
+
+    .entrada, .saida {
+        font-size: 12px;
+        right: 10px;
+    }
+
+    .entrada {
+        top: 10px;
+    }
+
+    .saida {
+        top: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.2rem; /* Even smaller title on mobile */
+    }
+
+    .buttons button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .attractions {
+        padding: 10px;
+    }
+
+    .hologate-section, .pistol-hype-section {
+        width: 250px; /* Further reduce arena size for mobile */
+        height: 250px;
+    }
+
+    .circle {
+        width: 60px; /* Even smaller circles */
+        height: 60px;
+        font-size: 20px;
+    }
+
+    .game-list {
+        width: 100%; /* Full width on mobile */
+        max-width: 250px;
+    }
+
+    .game-list h3 {
+        font-size: 14px;
+    }
+
+    .game-item {
+        font-size: 14px;
+    }
+
+    .play-icon {
+        font-size: 14px;
+    }
+
+    .modal-content {
+        margin: 20% auto; /* Adjust margin for smaller screens */
+        padding: 10px;
+        width: 90%;
+        max-width: 400px;
+    }
+
+    #game-video {
+        max-width: 100%; /* Ensure video fits on mobile */
+    }
+
+    .close {
+        font-size: 24px;
+        top: 5px;
+        right: 10px;
+    }
+
+    #video-title {
+        font-size: 16px;
+    }
 }

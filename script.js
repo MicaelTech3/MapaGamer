@@ -35,9 +35,9 @@ const attractionsData = {
                         <div class="circle red">3</div>
                     </div>
                     <div class="game-list right">
-                        <h3>Pistol Whip</h3>
+                        <h3>PISTOL WHIP</h3>
                         <div class="game-item" onclick="playGame('Pistol Whip')">
-                            <span class="play-icon">▶</span> Pistol Whip
+                            <span class="play-icon">▶</span> PISTOL WHIP
                         </div>
                     </div>
                 </div>
