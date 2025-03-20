@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Vídeos</title>
+    <link rel="stylesheet" href="videos.css">
+</head>
+<body>
+    <div class="video-container">
+        <h1>Lista de Vídeos</h1>
+        <div class="video-thumbnails">
+            <div class="thumbnail" onclick="openVideoModal('videos/zombie-game.mp4', 'Zombie Game')">
+                <video muted>
+                    <source src="videos/zombie-game.mp4" type="video/mp4">
+                    Seu navegador não suporta o elemento de vídeo.
+                </video>
+                <p>Zombie Game</p>
+            </div>
+            <!-- Add more thumbnails as needed -->
+            <div class="thumbnail" onclick="openVideoModal('videos/action-game.mp4', 'Action Game')">
+                <video muted>
+                    <source src="videos/action-game.mp4" type="video/mp4">
+                    Seu navegador não suporta o elemento de vídeo.
+                </video>
+                <p>Action Game</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for larger video -->
+    <div id="video-modal" class="video-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeVideoModal()">&times;</span>
+            <h2 id="video-title"></h2>
+            <video id="large-video" controls autoplay>
+                <source id="large-video-source" src="" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        function openVideoModal(videoSrc, videoTitle) {
+            const modal = document.getElementById('video-modal');
+            const largeVideo = document.getElementById('large-video');
+            const largeVideoSource = document.getElementById('large-video-source');
+            const videoTitleElement = document.getElementById('video-title');
+
+            largeVideoSource.src = videoSrc;
+            largeVideo.load();
+            videoTitleElement.textContent = videoTitle;
+            modal.style.display = 'block';
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const largeVideo = document.getElementById('large-video');
+            largeVideo.pause();
+            modal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e; /* Dark background for consistency */
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 20px;
+    position: relative;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.buttons button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.buttons button:hover {
+    background-color: #555;
+}
+
+.attractions {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    display: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.attractions h2 {
+    margin-bottom: 10px;
+}
+
+.attractions ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.attractions ul li {
+    margin: 5px 0;
+}
+
+video {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+/* Styles for G1 Floor */
+.elevator {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 40px;
+    background-color: #666;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.entrada, .saida {
+    position: absolute;
+    right: 20px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.entrada {
+    top: 20px;
+    color: #90ee90; /* Light green */
+}
+
+.saida {
+    top: 50px;
+    color: #ffb6c1; /* Light pink */
+}
+
+.arrow {
+    font-size: 16px;
+}
+
+.sections {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 80px;
+}
+
+.hologate-section, .pistol-hype-section {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.hologate-section h2 {
+    color: #00f; /* Blue */
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.pistol-hype-section h2 {
+    color: #f00; /* Red */
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.circles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.circle.blue {
+    border: 4px solid #00f; /* Blue border */
+    color: #00f;
+}
+
+.circle.red {
+    border: 4px solid #f00; /* Red border */
+    color: #f00;
+}
+
+/* Styles for Game List */
+.game-list {
+    width: 150px;
+    background-color: #333;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.game-list.left {
+    position: absolute;
+    left: -170px; /* Position to the left of the Hologate arena */
+    top: 0;
+}
+
+.game-list.right {
+    position: absolute;
+    right: -170px; /* Position to the right of the Pistol Hype arena */
+    top: 0;
+}
+
+.game-list h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.game-list.right h3 {
+    text-transform: lowercase;
+}
+
+.game-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border: 1px solid #00f; /* Blue border for game items */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.game-item:hover {
+    background-color: #444;
+}
+
+.game-list.right .game-item {
+    border: 1px solid #f00; /* Red border for right game list */
+    justify-content: flex-start; /* Align items to the left for the red list */
+}
+
+.play-icon {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #00f; /* Blue play icon */
+}
+
+.game-list.right .play-icon {
+    color: #f00; /* Red play icon for right game list */
+}
+
+/* Styles for Video Modal */
+.video-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background-color: #333;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#game-video {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 10px;
+}
+
+#video-title {
+    margin-bottom: 15px;
+}
