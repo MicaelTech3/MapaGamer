@@ -12,6 +12,7 @@ const attractionsData = {
                     </div>
                     <button class="toggle-list-btn blue" onclick="toggleGameList('hologate-list')">JOGOS HOLOGATE</button>
                     <div class="game-list left" id="hologate-list">
+                     <h3>Lista Jogos</h3>
                         <div class="game-item" onclick="playGame('Pronto para missão?')">
                             <span class="play-icon">▶</span> ZUMBYTE
                         </div>
@@ -36,7 +37,7 @@ const attractionsData = {
                     </div>
                     <button class="toggle-list-btn red" onclick="toggleGameList('pistol-list')">PISTOL WHIP</button>
                     <div class="game-list right" id="pistol-list">
-                        <h3>PISTOL WHIP</h3>
+                        <h3>Pistol Whip</h3>
                         <div class="game-item" onclick="playGame('Pistol Whip')">
                             <span class="play-icon">▶</span> PISTOL WHIP
                         </div>
