@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Térreo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1704F4 0%, #00ff04 100%);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgb(255, 255, 255);
+            background: linear-gradient(135deg, #1704F4 0%, #00ff04 100%);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+        }
+        .btn-voltar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 32px;
+            height: 32px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            padding: 0;
+        }
+        .btn-voltar:hover {
+            background-color: #555;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        p {
+            font-size: 16px;
+            color: #ffffff;
+        }
+        .imagem-container {
+            position: relative;
+            margin: 10px 0;
+        }
+        .imagem-terreo {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="icon/voltar.png" alt="Voltar" class="btn-voltar" onclick="window.location.href='index.html'">
+        <h1>Térreo</h1>
+        <p>Imersivas com força G.</p>
+
+        <div class="imagem-container">
+            <img src="icon/T-capsula3.png" alt="Descrição da Imagem 1" class="imagem-terreo">
+            
+        </div>
+
+        <div class="imagem-container">
+            <img src="icon/T-capsula2.png" alt="Descrição da Imagem 2" class="imagem-terreo">
+            
+        </div>
+
+        <div class="imagem-container">
+            <img src="icon/T-capsula1.png" alt="Descrição da Imagem 3" class="imagem-terreo">
+           
+        </div>
+    </div>
+</body>
+</html>

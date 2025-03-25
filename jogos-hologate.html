@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogos Hologate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1704F4 0%, #00ff04 100%);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: linear-gradient(135deg, #1704F4 0%, #00ff04 100%);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgb(255, 255, 255);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 20px;
+            width: 150px;
+            height: auto;
+        }
+        .btn-voltar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 32px;
+            height: 32px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            padding: 0;
+        }
+        .btn-voltar:hover {
+            background-color: #555;
+        }
+        h1 {
+            font-family: Georgia, serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        .game-list {
+            font-family: Georgia, serif;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .game-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            transition: background-color 0.2s;
+        }
+        .game-item:hover {
+            background-color: #e0e0e0;
+        }
+        .game-video-container {
+            position: relative;
+            margin-bottom: 10px;
+            display: none;
+        }
+        .game-video {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .btn-voltar-video {
+            display: inline-block;
+            padding: 8px;
+            background-color: #ff0606;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+        .btn-voltar-video:hover {
+            background-color: #ff0000;
+        }
+        .game-description {
+            font-size: 14px;
+            color: #ffffff;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="icon/voltar.png" alt="Voltar" class="btn-voltar" onclick="window.location.href='g1.html'">
+        <img src="icon/hologate.logo.png" alt="Hologate Logo" class="logo">
+        <h1 data-lang="jogos-hologate">Jogos Hologate</h1>
+        <ul class="game-list">
+            <li class="game-item" id="game1" data-lang="zumbyte" onclick="playGameVideo('game1')">Zumbyte</li>
+            <div class="game-video-container" id="game1-video-container">
+                <video class="game-video" id="game1-video" controls muted>
+                    <source src="g1/HOLOGATE - ZOMBYTE.mp4" type="video/mp4">
+                    Seu navegador não suporta o elemento de vídeo.
+                </video>
+                <p class="game-description" data-lang="zumbyte-desc">Junte-se a até quatro jogadores como parte da equipe Z.W.A.T. (Zombie Weapons And Tactics) e enfrente uma batalha intensa contra hordas de zumbis infectados em um depósito industrial abandonado. Use armas e táticas para sobreviver a este apocalipse zumbi de tirar o fôlego!</p>
+                <button class="btn-voltar-video" data-lang="fechar" onclick="closeGameVideo('game1')">Fechar</button>
+            </div>
+
+            <li class="game-item" id="game2" data-lang="caption-coock" onclick="playGameVideo('game2')">Caption Coock</li>
+            <div class="game-video-container" id="game2-video-container">
+                <video class="game-video" id="game2-video" controls muted>
+                    <source src="g1/HOLOGATE - Captain Cook.mp4" type="video/mp4">
+                    Seu navegador não suporta o elemento de vídeo.
+                </video>
+                <p class="game-description" data-lang="caption-coock-desc">Embarque no navio pirata Black Crumpet e prepare-se para cozinhar! Você e seus amigos são chefs do mar, encarregados de cortar vegetais, grelhar carnes e servir bebidas para piratas famintos. Trabalhem juntos nesta aventura culinária cooperativa e familiar!</p>
+                <button class="btn-voltar-video" data-lang="fechar" onclick="closeGameVideo('game2')">Fechar</button>
+            </div>
+
+            <li class="game-item" id="game3" data-lang="simurai-arena" onclick="playGameVideo('game3')">Simurai Arena</li>
+            <div class="game-video-container" id="game3-video-container">
+                <video class="game-video" id="game3-video" controls muted>
+                    <source src="g1/HOLOGATE - SIMURAI ARENA.mp4" type="video/mp4">
+                    Seu navegador não suporta o elemento de vídeo.
+                </video>
+                <p class="game-description" data-lang="simurai-arena-desc">Entre em um dojo futurista e lute contra guerreiros holográficos em Simurai Arena! Junto com até quatro jogadores, defenda uma base no planeta natal dos Simurai, enfrentando monstros de outro mundo e coletando power-ups para vencer o chefão final.</p>
+                <button class="btn-voltar-video" data-lang="fechar" onclick="closeGameVideo('game3')">Fechar</button>
+            </div>
+
+            <li class="game-item" id="game4" data-lang="simurai" onclick="playGameVideo('game4')">Simurai</li>
+            <div class="game-video-container" id="game4-video-container">
+                <video class="game-video" id="game4-video" controls muted>
+                    <source src="g1/HOLOGATE - SIMURAI.mp4" type="video/mp4">
+                    Seu navegador não suporta o elemento de vídeo.
+                </video>
+                <p class="game-description" data-lang="simurai-desc">Simurai é um jogo de tiro cooperativo em equipe que desafia suas habilidades! Enfrente inimigos com gráficos retrô de alta qualidade, colete power-ups para transformar sua arma e desvie de lasers para alcançar a maior pontuação. Perfeito para todas as idades!</p>
+                <button class="btn-voltar-video" data-lang="fechar" onclick="closeGameVideo('game4')">Fechar</button>
+            </div>
+
+            <li class="game-item" id="game5" data-lang="clod-clash" onclick="playGameVideo('game5')">Clod Clash</li>
+            <div class="game-video-container" id="game5-video-container">
+                <video class="game-video" id="game5-video" controls muted>
+                    <source src="g1/HOLOGATE - COLD CLASH.mp4" type="video/mp4">
+                    Seu navegador não suporta o elemento de vídeo.
+                </video>
+                <p class="game-description" data-lang="clod-clash-desc">Pilote um hovercraft em um lago congelado e colete moedas de ouro enquanto desvia de bolas de neve lançadas por outros jogadores e por um yeti territorial! Pegue power-ups para transformar seu lançador de bolas de neve em armas malucas e vença a competição.</p>
+                <button class="btn-voltar-video" data-lang="fechar" onclick="closeGameVideo('game5')">Fechar</button>
+            </div>
+
+            <li class="game-item" id="game6" data-lang="escalada" onclick="playGameVideo('game6')">Escalada</li>
+            <div class="game-video-container" id="game6-video-container">
+                <video class="game-video" id="game6-video" controls muted>
+                    <source src="game6-video.mp4" type="video/mp4">
+                    Seu navegador não suporta o elemento de vídeo.
+                </video>
+                <p class="game-description" data-lang="escalada-desc">Viva a emoção de escalar montanhas virtuais em Escalada! Teste sua resistência e habilidade enquanto enfrenta desafios de altura em cenários de tirar o fôlego, perfeitos para aventureiros que buscam uma experiência imersiva e cheia de adrenalina.</p>
+                <button class="btn-voltar-video" data-lang="fechar" onclick="closeGameVideo('game6')">Fechar</button>
+            </div>
+
+            <li class="game-item" id="game7" data-lang="sei-nao" onclick="playGameVideo('game7')">Sei Não</li>
+            <div class="game-video-container" id="game7-video-container">
+                <video class="game-video" id="game7-video" controls muted>
+                    <source src="game7-video.mp4" type="video/mp4">
+                    Seu navegador não suporta o elemento de vídeo.
+                </video>
+                <p class="game-description" data-lang="sei-nao-desc">Mergulhe em um castelo assombrado em Sei Não, um jogo de mistério envolvente! Resolva enigmas intrigantes e desvende segredos sombrios enquanto explora cenários assustadores, ideal para quem ama desafios de lógica e uma boa dose de suspense.</p>
+                <button class="btn-voltar-video" data-lang="fechar" onclick="closeGameVideo('game7')">Fechar</button>
+            </div>
+        </ul>
+    </div>
+
+    <script>
+        const translations = {
+            pt: {
+                "jogos-hologate": "Jogos Hologate",
+                "zumbyte": "Zumbyte",
+                "zumbyte-desc": "Junte-se a até quatro jogadores como parte da equipe Z.W.A.T. (Zombie Weapons And Tactics) e enfrente uma batalha intensa contra hordas de zumbis infectados em um depósito industrial abandonado. Use armas e táticas para sobreviver a este apocalipse zumbi de tirar o fôlego!",
+                "caption-coock": "Caption Coock",
+                "caption-coock-desc": "Embarque no navio pirata Black Crumpet e prepare-se para cozinhar! Você e seus amigos são chefs do mar, encarregados de cortar vegetais, grelhar carnes e servir bebidas para piratas famintos. Trabalhem juntos nesta aventura culinária cooperativa e familiar!",
+                "simurai-arena": "Simurai Arena",
+                "simurai-arena-desc": "Entre em um dojo futurista e lute contra guerreiros holográficos em Simurai Arena! Junto com até quatro jogadores, defenda uma base no planeta natal dos Simurai, enfrentando monstros de outro mundo e coletando power-ups para vencer o chefão final.",
+                "simurai": "Simurai",
+                "simurai-desc": "Simurai é um jogo de tiro cooperativo em equipe que desafia suas habilidades! Enfrente inimigos com gráficos retrô de alta qualidade, colete power-ups para transformar sua arma e desvie de lasers para alcançar a maior pontuação. Perfeito para todas as idades!",
+                "clod-clash": "Clod Clash",
+                "clod-clash-desc": "Pilote um hovercraft em um lago congelado e colete moedas de ouro enquanto desvia de bolas de neve lançadas por outros jogadores e por um yeti territorial! Pegue power-ups para transformar seu lançador de bolas de neve em armas malucas e vença a competição.",
+                "escalada": "Escalada",
+                "escalada-desc": "Viva a emoção de escalar montanhas virtuais em Escalada! Teste sua resistência e habilidade enquanto enfrenta desafios de altura em cenários de tirar o fôlego, perfeitos para aventureiros que buscam uma experiência imersiva e cheia de adrenalina.",
+                "sei-nao": "Sei Não",
+                "sei-nao-desc": "Mergulhe em um castelo assombrado em Sei Não, um jogo de mistério envolvente! Resolva enigmas intrigantes e desvende segredos sombrios enquanto explora cenários assustadores, ideal para quem ama desafios de lógica e uma boa dose de suspense.",
+                "fechar": "Fechar"
+            },
+            en: {
+                "jogos-hologate": "Hologate Games",
+                "zumbyte": "Zumbyte",
+                "zumbyte-desc": "Join up to four players as part of the Z.W.A.T. (Zombie Weapons And Tactics) team and face an intense battle against hordes of infected zombies in an abandoned industrial warehouse. Use weapons and tactics to survive this breathtaking zombie apocalypse!",
+                "caption-coock": "Captain Cook",
+                "caption-coock-desc": "Board the pirate ship Black Crumpet and get ready to cook! You and your friends are sea chefs tasked with chopping vegetables, grilling meat, and serving drinks to hungry pirates. Work together in this cooperative and family-friendly culinary adventure!",
+                "simurai-arena": "Simurai Arena",
+                "simurai-arena-desc": "Step into a futuristic dojo and fight holographic warriors in Simurai Arena! Alongside up to four players, defend a base on the Simurai home planet, facing otherworldly monsters and collecting power-ups to defeat the final boss.",
+                "simurai": "Simurai",
+                "simurai-desc": "Simurai is a cooperative team shooter that tests your skills! Take on enemies with high-quality retro graphics, collect power-ups to upgrade your weapon, and dodge lasers to achieve the highest score. Perfect for all ages!",
+                "clod-clash": "Cold Clash",
+                "clod-clash-desc": "Pilot a hovercraft on a frozen lake and collect gold coins while dodging snowballs thrown by other players and a territorial yeti! Grab power-ups to turn your snowball launcher into crazy weapons and win the competition.",
+                "escalada": "Climbing",
+                "escalada-desc": "Experience the thrill of climbing virtual mountains in Climbing! Test your endurance and skill as you tackle height challenges in breathtaking scenarios, perfect for adventurers seeking an immersive, adrenaline-packed experience.",
+                "sei-nao": "I Don’t Know",
+                "sei-nao-desc": "Dive into a haunted castle in I Don’t Know, an engaging mystery game! Solve intriguing puzzles and uncover dark secrets while exploring spooky settings, ideal for those who love logic challenges and a touch of suspense.",
+                "fechar": "Close"
+            },
+            es: {
+                "jogos-hologate": "Juegos Hologate",
+                "zumbyte": "Zumbyte",
+                "zumbyte-desc": "Únete a hasta cuatro jugadores como parte del equipo Z.W.A.T. (Zombie Weapons And Tactics) y enfrenta una intensa batalla contra hordas de zombis infectados en un almacén industrial abandonado. ¡Usa armas y tácticas para sobrevivir a este apocalipsis zombi impresionante!",
+                "caption-coock": "Capitán Cook",
+                "caption-coock-desc": "¡Sube al barco pirata Black Crumpet y prepárate para cocinar! Tú y tus amigos son chefs del mar, encargados de cortar vegetales, asar carnes y servir bebidas a piratas hambrientos. ¡Trabajen juntos en esta aventura culinaria cooperativa y familiar!",
+                "simurai-arena": "Simurai Arena",
+                "simurai-arena-desc": "Entra en un dojo futurista y lucha contra guerreros holográficos en Simurai Arena! Junto con hasta cuatro jugadores, defiende una base en el planeta natal de los Simurai, enfrentando monstruos de otro mundo y recolectando potenciadores para vencer al jefe final.",
+                "simurai": "Simurai",
+                "simurai-desc": "Simurai es un juego de disparos cooperativo en equipo que desafía tus habilidades! Enfréntate a enemigos con gráficos retro de alta calidad, recoge potenciadores para transformar tu arma y esquiva láseres para alcanzar la mayor puntuación. ¡Perfecto para todas las edades!",
+                "clod-clash": "Cold Clash",
+                "clod-clash-desc": "Pilotea un aerodeslizador en un lago congelado y recoge monedas de oro mientras esquivas bolas de nieve lanzadas por otros jugadores y un yeti territorial. ¡Toma potenciadores para convertir tu lanzador de bolas de nieve en armas locas y gana la competencia!",
+                "escalada": "Escalada",
+                "escalada-desc": "¡Vive la emoción de escalar montañas virtuales en Escalada! Prueba tu resistencia y habilidad mientras enfrentas desafíos de altura en escenarios impresionantes, perfectos para aventureros que buscan una experiencia inmersiva y llena de adrenalina.",
+                "sei-nao": "No Sé",
+                "sei-nao-desc": "Sumérgete en un castillo embrujado en No Sé, ¡un juego de misterio envolvente! Resuelve acertijos intrigantes y descubre secretos oscuros mientras exploras escenarios espeluznantes, ideal para quienes aman desafíos de lógica y una dosis de suspenso.",
+                "fechar": "Cerrar"
+            }
+        };
+
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                element.textContent = translations[lang][key];
+            });
+            document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+        }
+
+        function playGameVideo(gameId) {
+            document.getElementById(gameId).style.display = 'none';
+            const videoContainer = document.getElementById(gameId + '-video-container');
+            const video = document.getElementById(gameId + '-video');
+            videoContainer.style.display = 'block';
+            video.play();
+        }
+
+        function closeGameVideo(gameId) {
+            const videoContainer = document.getElementById(gameId + '-video-container');
+            const video = document.getElementById(gameId + '-video');
+            videoContainer.style.display = 'none';
+            video.pause();
+            video.currentTime = 0;
+            document.getElementById(gameId).style.display = 'block';
+        }
+
+        // Carrega o idioma salvo ou usa português como padrão
+        window.onload = () => {
+            const savedLang = localStorage.getItem('selectedLanguage') || 'pt';
+            updateLanguage(savedLang);
+        };
+    </script>
+</body>
+</html>

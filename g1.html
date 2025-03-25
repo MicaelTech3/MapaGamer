@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1704F4 0%, #00ff04 100%);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: linear-gradient(135deg, #1704F4 0%, #00ff04 100%);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgb(255, 255, 255);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+        }
+        .btn-voltar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 32px;
+            height: 32px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            padding: 0;
+        }
+        .btn-voltar:hover {
+            background-color: #555;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        p {
+            font-family: Georgia, serif;
+            font-size: 16px;
+            color: #fffdfd;
+            margin-bottom: 20px;
+        }
+        .floor-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="icon/voltar.png" alt="Voltar" class="btn-voltar" onclick="window.location.href='index.html'">
+        <h1 data-lang="g1">G1</h1>
+        <p data-lang="veja-jogos">Veja nossos jogos abaixo.</p>
+        <img src="icon/g1-imagem1.png" alt="Imagem do G1 - Jogo 1" class="floor-image" onclick="window.location.href='jogos-hologate.html'">
+        <img src="icon/g1-imagem2.png" alt="Imagem do G1 - Jogo 2" class="floor-image" onclick="window.location.href='pistol-whip.html'">
+    </div>
+
+    <script>
+        const translations = {
+            pt: {
+                "g1": "G1",
+                "veja-jogos": "Veja nossos jogos abaixo."
+            },
+            en: {
+                "g1": "G1",
+                "veja-jogos": "Check out our games below."
+            },
+            es: {
+                "g1": "G1",
+                "veja-jogos": "Mira nuestros juegos a continuación."
+            }
+        };
+
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                element.textContent = translations[lang][key];
+            });
+            document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+        }
+
+        // Carrega o idioma salvo ou usa português como padrão
+        window.onload = () => {
+            const savedLang = localStorage.getItem('selectedLanguage') || 'pt';
+            updateLanguage(savedLang);
+        };
+    </script>
+</body>
+</html>

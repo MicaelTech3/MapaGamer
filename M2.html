@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAPA GAMER - M2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1704F4 0%, #00ff04 100%);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: linear-gradient(135deg, #00ff04 0%, #1704F4 100%);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgb(255, 255, 255);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            opacity: 0.9;
+            position: relative;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 20px;
+            width: 150px;
+            height: auto;
+        }
+        .icon3d {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 550px;
+            height: auto;
+            opacity: 30;
+            mix-blend-mode: overlay;
+            z-index: -1;
+            pointer-events: none;
+        }
+        h1 {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .toggle-switch {
+            position: relative;
+            width: 80px;
+            height: 30px;
+            background-color: #0078d4;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .toggle-switch span {
+            color: #fff;
+            font-size: 12px;
+            width: 50%;
+            text-align: center;
+            z-index: 1;
+        }
+        .toggle-slider {
+            position: absolute;
+            width: 40px;
+            height: 26px;
+            background-color: #00ff04;
+            border-radius: 13px;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+        }
+        .toggle-switch.on .toggle-slider {
+            transform: translateX(38px);
+        }
+        .language-select {
+            display: block;
+            margin: 10px auto;
+            padding: 5px;
+            background-color: #0078d4;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .language-select:hover {
+            background-color: #005a9e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="icon/exceed.logo.png" alt="Logotipo do Hologate" class="logo">
+        <img src="icon/3d icon1.webp" alt="Ícone do controlador" class="icon3d">
+        <select class="language-select" onchange="changeLanguage(this.value)">
+            <option value="pt">Português</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+        </select>
+        <h1 data-lang="em-reforma">EM REFORMA</h1>
+        <div class="toggle-switch on" onclick="toggleLayout()">
+            <span>M1</span>
+            <span>M2</span>
+            <div class="toggle-slider"></div>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            pt: {
+                "em-reforma": "EM REFORMA"
+            },
+            en: {
+                "em-reforma": "UNDER RENOVATION"
+            },
+            es: {
+                "em-reforma": "EN REFORMA"
+            }
+        };
+
+        function changeLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang); // Armazena o idioma
+            updateLanguage(lang);
+        }
+
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                element.textContent = translations[lang][key];
+            });
+            document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+            const select = document.querySelector('.language-select');
+            select.value = lang; // Sincroniza o dropdown
+        }
+
+        function toggleLayout() {
+            const switchElement = document.querySelector('.toggle-switch');
+            switchElement.classList.toggle('on');
+            if (!switchElement.classList.contains('on')) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Carrega o idioma salvo ou usa português como padrão
+        window.onload = () => {
+            const savedLang = localStorage.getItem('selectedLanguage') || 'pt';
+            updateLanguage(savedLang);
+        };
+    </script>
+</body>
+</html>

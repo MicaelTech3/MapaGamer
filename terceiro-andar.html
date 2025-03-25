@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3º Andar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1704F4 0%, #00ff04 100%);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgb(255, 255, 255);
+            background: linear-gradient(135deg, #1704F4 0%, #00ff04 100%);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+        }
+        .btn-voltar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 32px; /* Tamanho do ícone */
+            height: 32px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            padding: 0; 
+        }
+        .btn-voltar:hover {
+            background-color: #555;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #fff7f7;
+        }
+        p {
+            font-size: 16px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="icon/voltar.png" alt="Voltar" class="btn-voltar" onclick="window.location.href='index.html'">
+        <h1>3º Andar</h1>
+        <p>EM REFORMA.</p>
+    </div>
+</body>
+</html>
