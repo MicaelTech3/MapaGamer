@@ -14,17 +14,31 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            position: relative;
         }
+        .btn-voltar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 32px;
+            height: 32px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            padding: 0;
+ }
+
         .container {
             background: linear-gradient(135deg, #00ff04 0%, #1704F4 100%);
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             box-shadow: 0 2px 8px rgb(255, 255, 255);
             width: 100%;
-            max-width: 400px;
+            max-width: 600px;
             text-align: center;
-            opacity: 0.9;
             position: relative;
+            z-index: 1;
         }
         .logo {
             display: block;
@@ -39,13 +53,13 @@
             transform: translate(-50%, -50%);
             width: 550px;
             height: auto;
-            opacity: 30;
+            opacity: 0.2;
             mix-blend-mode: overlay;
             z-index: -1;
             pointer-events: none;
         }
         h1 {
-            font-family: Georgia, serif;
+            font-family: 'Press Start 2P', cursive;
             font-size: 28px;
             margin-bottom: 10px;
             color: #ffffff;
@@ -84,55 +98,224 @@
         .toggle-switch.on .toggle-slider {
             transform: translateX(38px);
         }
-        .language-select {
-            display: block;
-            margin: 10px auto;
-            padding: 5px;
-            background-color: #0078d4;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-top: 20px;
         }
-        .language-select:hover {
-            background-color: #005a9e;
+        .map-slider {
+            display: flex;
+            width: 500%; /* 5 andares, cada um com 100% da largura */
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        .floor {
+            width: 20%; /* Cada andar ocupa 1/5 da largura total */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .floor-name {
+            position: absolute;
+            top: 10px;
+            font-size: 18px;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .media-content {
+            max-width: 100%;
+            max-height: 80%;
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .pdf-container {
+            width: 100%;
+            height: 80%;
+            overflow: hidden;
+            position: relative;
+            cursor: grab;
+            border: 3px solid #00ff04; /* Borda neon verde */
+            border-radius: 8px; /* Bordas arredondadas */
+            box-shadow: 0 0 10px #00ff04; /* Sombra neon */
+        }
+        .pdf-container:active {
+            cursor: grabbing;
+        }
+        .zoom-controls {
+            position: absolute;
+            bottom: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .zoom-button {
+            padding: 5px 10px;
+            background-color: #00ff04;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .zoom-button:hover {
+            background-color: #00cc00;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="icon/exceed.logo.png" alt="Logotipo do Hologate" class="logo">
         <img src="icon/3d icon1.webp" alt="Ícone do controlador" class="icon3d">
-        <select class="language-select" onchange="changeLanguage(this.value)">
-            <option value="pt">Português</option>
-            <option value="en">English</option>
-            <option value="es">Español</option>
-        </select>
-        <h1 data-lang="em-reforma">EM REFORMA</h1>
+        <img src="icon/voltar.png" alt="Voltar" class="btn-voltar" onclick="window.location.href='index.html'">
+        <img src="icon/exceed.logo.png" alt="Logotipo do Hologate" class="logo">
+        <h1 data-lang="mapa-m2">Mapa M2</h1>
         <div class="toggle-switch on" onclick="toggleLayout()">
             <span>M1</span>
             <span>M2</span>
             <div class="toggle-slider"></div>
+        </div>
+        <div class="map-container">
+            <div class="map-slider" id="map-slider">
+                <!-- G1 - Imagem -->
+                <div class="floor">
+                    <div class="floor-name" data-lang="g1">G1</div>
+                    <img src="caminho/para/imagem_g1.jpg" alt="Imagem do G1" class="media-content">
+                </div>
+                <!-- Térreo - Vídeo -->
+                <div class="floor">
+                    <div class="floor-name" data-lang="terreo">Térreo</div>
+                    <video controls class="media-content">
+                        <source src="caminho/para/video_terreo.mp4" type="video/mp4">
+                        Seu navegador não suporta vídeos.
+                    </video>
+                </div>
+                <!-- 2º Andar - Imagem -->
+                <div class="floor">
+                    <div class="floor-name" data-lang="segundo-andar">2º andar</div>
+                    <img src="caminho/para/imagem_2_andar.jpg" alt="Imagem do 2º Andar" class="media-content">
+                </div>
+                <!-- 3º Andar - Vídeo -->
+                <div class="floor">
+                    <div class="floor-name" data-lang="terceiro-andar">3º andar</div>
+                    <video controls class="media-content">
+                        <source src="caminho/para/video_3_andar.mp4" type="video/mp4">
+                        Seu navegador não suporta vídeos.
+                    </video>
+                </div>
+                <!-- 4º Andar - PDF com Arrastar e Zoom -->
+                <div class="floor">
+                    <img src="icon/voltar.png" alt="Voltar" class="btn-voltar" onclick="window.location.href='index.html'">
+                    <div class="floor-name" data-lang="quarto-andar">4º andar</div>
+                    <div class="pdf-container" id="pdf-container">
+                        <iframe id="pdf-map" src="M2/m2_4andar.png" class="media-content" title="Mapa do 4º Andar"></iframe>
+                    </div>
+                    <div class="zoom-controls">
+                        <button class="zoom-button" onclick="zoomIn()">+</button>
+                        <button class="zoom-button" onclick="zoomOut()">-</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
         const translations = {
             pt: {
-                "em-reforma": "EM REFORMA"
+                "mapa-m2": "Mapa M2",
+                "g1": "G1",
+                "terreo": "Térreo",
+                "segundo-andar": "2º andar",
+                "terceiro-andar": "3º andar",
+                "quarto-andar": "4º andar"
             },
             en: {
-                "em-reforma": "UNDER RENOVATION"
+                "mapa-m2": "Map M2",
+                "g1": "G1",
+                "terreo": "Ground Floor",
+                "segundo-andar": "2nd Floor",
+                "terceiro-andar": "3rd Floor",
+                "quarto-andar": "4th Floor"
             },
             es: {
-                "em-reforma": "EN REFORMA"
+                "mapa-m2": "Mapa M2",
+                "g1": "G1",
+                "terreo": "Planta Baja",
+                "segundo-andar": "2º Piso",
+                "terceiro-andar": "3º Piso",
+                "quarto-andar": "4º Piso"
             }
         };
 
-        function changeLanguage(lang) {
-            localStorage.setItem('selectedLanguage', lang); // Armazena o idioma
-            updateLanguage(lang);
+        let currentFloor = 0;
+        const slider = document.getElementById('map-slider');
+        const totalFloors = 5;
+        let startX = 0;
+        let isDraggingSlider = false;
+        let zoomLevel = 1; // Nível inicial de zoom
+
+        // Controle de arrastar o PDF
+        const pdfContainer = document.getElementById('pdf-container');
+        const pdfFrame = document.getElementById('pdf-map');
+        let isDraggingPDF = false;
+        let pdfStartY = 0;
+        let scrollTop = 0;
+
+        pdfContainer.addEventListener('mousedown', startDraggingPDF);
+        pdfContainer.addEventListener('mousemove', dragPDF);
+        pdfContainer.addEventListener('mouseup', stopDraggingPDF);
+        pdfContainer.addEventListener('touchstart', startDraggingPDFTouch);
+        pdfContainer.addEventListener('touchmove', dragPDFTouch);
+        pdfContainer.addEventListener('touchend', stopDraggingPDF);
+
+        function startDraggingPDF(event) {
+            isDraggingPDF = true;
+            pdfStartY = event.clientY;
+            scrollTop = pdfFrame.contentWindow.scrollY || 0;
+        }
+
+        function startDraggingPDFTouch(event) {
+            isDraggingPDF = true;
+            pdfStartY = event.touches[0].clientY;
+            scrollTop = pdfFrame.contentWindow.scrollY || 0;
+        }
+
+        function dragPDF(event) {
+            if (!isDraggingPDF) return;
+            const currentY = event.clientY;
+            const diffY = pdfStartY - currentY;
+            pdfFrame.contentWindow.scrollTo(0, scrollTop + diffY * zoomLevel);
+        }
+
+        function dragPDFTouch(event) {
+            if (!isDraggingPDF) return;
+            const currentY = event.touches[0].clientY;
+            const diffY = pdfStartY - currentY;
+            pdfFrame.contentWindow.scrollTo(0, scrollTop + diffY * zoomLevel);
+        }
+
+        function stopDraggingPDF() {
+            isDraggingPDF = false;
+        }
+
+        // Funções de Zoom
+        function zoomIn() {
+            zoomLevel += 0.2;
+            if (zoomLevel > 2) zoomLevel = 2; // Limite máximo de zoom (200%)
+            pdfFrame.style.transform = `scale(${zoomLevel})`;
+            pdfFrame.style.transformOrigin = 'top center'; // Zoom a partir do topo
+        }
+
+        function zoomOut() {
+            zoomLevel -= 0.2;
+            if (zoomLevel < 0.5) zoomLevel = 0.5; // Limite mínimo de zoom (50%)
+            pdfFrame.style.transform = `scale(${zoomLevel})`;
+            pdfFrame.style.transformOrigin = 'top center'; // Zoom a partir do topo
         }
 
         function updateLanguage(lang) {
@@ -141,8 +324,6 @@
                 element.textContent = translations[lang][key];
             });
             document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
-            const select = document.querySelector('.language-select');
-            select.value = lang; // Sincroniza o dropdown
         }
 
         function toggleLayout() {
@@ -153,10 +334,48 @@
             }
         }
 
-        // Carrega o idioma salvo ou usa português como padrão
+        function updateSlider() {
+            const offset = -currentFloor * (100 / totalFloors);
+            slider.style.transform = `translateX(${offset}%)`;
+        }
+
+        function handleDragStart(event) {
+            startX = event.type === 'touchstart' ? event.touches[0].clientX : event.clientX;
+            isDraggingSlider = true;
+        }
+
+        function handleDragMove(event) {
+            if (!isDraggingSlider) return;
+            const currentX = event.type === 'touchmove' ? event.touches[0].clientX : event.clientX;
+            const diffX = startX - currentX;
+
+            if (Math.abs(diffX) > 50) {
+                if (diffX > 0 && currentFloor < totalFloors - 1) {
+                    currentFloor++;
+                } else if (diffX < 0 && currentFloor > 0) {
+                    currentFloor--;
+                }
+                updateSlider();
+                isDraggingSlider = false;
+            }
+        }
+
+        function handleDragEnd() {
+            isDraggingSlider = false;
+        }
+
+        const mapContainer = document.querySelector('.map-container');
+        mapContainer.addEventListener('mousedown', handleDragStart);
+        mapContainer.addEventListener('mousemove', handleDragMove);
+        mapContainer.addEventListener('mouseup', handleDragEnd);
+        mapContainer.addEventListener('touchstart', handleDragStart);
+        mapContainer.addEventListener('touchmove', handleDragMove);
+        mapContainer.addEventListener('touchend', handleDragEnd);
+
         window.onload = () => {
             const savedLang = localStorage.getItem('selectedLanguage') || 'pt';
             updateLanguage(savedLang);
+            updateSlider();
         };
     </script>
 </body>
