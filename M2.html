@@ -166,6 +166,31 @@
         .zoom-button:hover {
             background-color: #00cc00;
         }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: #00ff04;
+            color: #000;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 2;
+        }
+        .nav-button:hover {
+            background-color: #00cc00;
+        }
+        .next-button {
+            right: 10px;
+        }
+        .prev-button {
+            left: 10px;
+            display: none; /* Escondido por padrão no G1 */
+        }
 
         /* Media Query para dispositivos móveis */
         @media (max-width: 768px) {
@@ -206,6 +231,11 @@
                 padding: 3px 8px;
                 font-size: 14px;
             }
+            .nav-button {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
         }
 
         /* Ajuste para orientação vertical em celulares */
@@ -231,6 +261,8 @@
             <div class="toggle-slider"></div>
         </div>
         <div class="map-container">
+            <button class="nav-button prev-button" id="prev-button" onclick="prevFloor()">←</button>
+            <button class="nav-button next-button" id="next-button" onclick="nextFloor()">→</button>
             <div class="map-slider" id="map-slider">
                 <!-- G1 - Imagem -->
                 <div class="floor">
@@ -304,8 +336,8 @@
         let currentFloor = 0;
         const slider = document.getElementById('map-slider');
         const totalFloors = 5;
-        let startX = 0;
-        let isDraggingSlider = false;
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
         let zoomLevel = 1; // Nível inicial de zoom
 
         // Controle de arrastar o PDF
@@ -326,14 +358,14 @@
             isDraggingPDF = true;
             pdfStartY = event.clientY;
             scrollTop = pdfFrame.contentWindow.scrollY || 0;
-            event.preventDefault(); // Impede a propagação para o slider
+            event.preventDefault(); // Impede a propagação
         }
 
         function startDraggingPDFTouch(event) {
             isDraggingPDF = true;
             pdfStartY = event.touches[0].clientY;
             scrollTop = pdfFrame.contentWindow.scrollY || 0;
-            event.preventDefault(); // Impede a propagação para o slider
+            event.preventDefault(); // Impede a propagação
         }
 
         function dragPDF(event) {
@@ -341,7 +373,7 @@
             const currentY = event.clientY;
             const diffY = pdfStartY - currentY;
             pdfFrame.contentWindow.scrollTo(0, scrollTop + diffY * zoomLevel);
-            event.preventDefault(); // Impede a propagação para o slider
+            event.preventDefault(); // Impede a propagação
         }
 
         function dragPDFTouch(event) {
@@ -349,7 +381,7 @@
             const currentY = event.touches[0].clientY;
             const diffY = pdfStartY - currentY;
             pdfFrame.contentWindow.scrollTo(0, scrollTop + diffY * zoomLevel);
-            event.preventDefault(); // Impede a propagação para o slider
+            event.preventDefault(); // Impede a propagação
         }
 
         function stopDraggingPDF() {
@@ -371,6 +403,28 @@
             pdfFrame.style.transformOrigin = 'top center'; // Zoom a partir do topo
         }
 
+        // Funções de Navegação
+        function updateSlider() {
+            const offset = -currentFloor * (100 / totalFloors);
+            slider.style.transform = `translateX(${offset}%)`;
+            prevButton.style.display = currentFloor > 0 ? 'block' : 'none';
+            nextButton.style.display = currentFloor < totalFloors - 1 ? 'block' : 'none';
+        }
+
+        function nextFloor() {
+            if (currentFloor < totalFloors - 1) {
+                currentFloor++;
+                updateSlider();
+            }
+        }
+
+        function prevFloor() {
+            if (currentFloor > 0) {
+                currentFloor--;
+                updateSlider();
+            }
+        }
+
         function updateLanguage(lang) {
             document.querySelectorAll('[data-lang]').forEach(element => {
                 const key = element.getAttribute('data-lang');
@@ -386,45 +440,6 @@
                 window.location.href = 'index.html';
             }
         }
-
-        function updateSlider() {
-            const offset = -currentFloor * (100 / totalFloors);
-            slider.style.transform = `translateX(${offset}%)`;
-        }
-
-        function handleDragStart(event) {
-            if (isDraggingPDF) return; // Não inicia o arrastar do slider se o PDF está sendo arrastado
-            startX = event.type === 'touchstart' ? event.touches[0].clientX : event.clientX;
-            isDraggingSlider = true;
-        }
-
-        function handleDragMove(event) {
-            if (!isDraggingSlider || isDraggingPDF) return; // Ignora se o PDF está sendo arrastado
-            const currentX = event.type === 'touchmove' ? event.touches[0].clientX : event.clientX;
-            const diffX = startX - currentX;
-
-            if (Math.abs(diffX) > 50) {
-                if (diffX > 0 && currentFloor < totalFloors - 1) {
-                    currentFloor++;
-                } else if (diffX < 0 && currentFloor > 0) {
-                    currentFloor--;
-                }
-                updateSlider();
-                isDraggingSlider = false;
-            }
-        }
-
-        function handleDragEnd() {
-            isDraggingSlider = false;
-        }
-
-        const mapContainer = document.querySelector('.map-container');
-        mapContainer.addEventListener('mousedown', handleDragStart);
-        mapContainer.addEventListener('mousemove', handleDragMove);
-        mapContainer.addEventListener('mouseup', handleDragEnd);
-        mapContainer.addEventListener('touchstart', handleDragStart);
-        mapContainer.addEventListener('touchmove', handleDragMove);
-        mapContainer.addEventListener('touchend', handleDragEnd);
 
         window.onload = () => {
             const savedLang = localStorage.getItem('selectedLanguage') || 'pt';
