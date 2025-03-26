@@ -140,13 +140,9 @@
             height: 80%;
             overflow: hidden;
             position: relative;
-            cursor: grab;
             border: 3px solid #00ff04; /* Borda neon verde */
             border-radius: 8px; /* Bordas arredondadas */
             box-shadow: 0 0 10px #00ff04; /* Sombra neon */
-        }
-        .pdf-container:active {
-            cursor: grabbing;
         }
         .zoom-controls {
             position: absolute;
@@ -290,7 +286,7 @@
                         Seu navegador não suporta vídeos.
                     </video>
                 </div>
-                <!-- 4º Andar - PDF com Arrastar e Zoom -->
+                <!-- 4º Andar - PDF com Movimento do Mouse e Zoom -->
                 <div class="floor">
                     <div class="floor-name" data-lang="quarto-andar">4º andar</div>
                     <div class="pdf-container" id="pdf-container">
@@ -340,67 +336,56 @@
         const nextButton = document.getElementById('next-button');
         let zoomLevel = 1; // Nível inicial de zoom
 
-        // Controle de arrastar o PDF
+        // Controle de movimento do mouse no PDF
         const pdfContainer = document.getElementById('pdf-container');
         const pdfFrame = document.getElementById('pdf-map');
-        let isDraggingPDF = false;
-        let pdfStartY = 0;
-        let scrollTop = 0;
+        let isZoomed = false;
 
-        pdfContainer.addEventListener('mousedown', startDraggingPDF);
-        pdfContainer.addEventListener('mousemove', dragPDF);
-        pdfContainer.addEventListener('mouseup', stopDraggingPDF);
-        pdfContainer.addEventListener('touchstart', startDraggingPDFTouch);
-        pdfContainer.addEventListener('touchmove', dragPDFTouch);
-        pdfContainer.addEventListener('touchend', stopDraggingPDF);
+        pdfContainer.addEventListener('mousemove', movePDF);
+        pdfContainer.addEventListener('dblclick', toggleZoom);
 
-        function startDraggingPDF(event) {
-            isDraggingPDF = true;
-            pdfStartY = event.clientY;
-            scrollTop = pdfFrame.contentWindow.scrollY || 0;
-            event.preventDefault(); // Impede a propagação
+        function movePDF(event) {
+            const rect = pdfContainer.getBoundingClientRect();
+            const mouseY = event.clientY - rect.top; // Posição do mouse relativa ao container
+            const containerHeight = rect.height;
+            const contentHeight = pdfFrame.scrollHeight * zoomLevel; // Altura total do conteúdo com zoom
+
+            if (contentHeight <= containerHeight) return; // Não move se o conteúdo couber no container
+
+            const maxScroll = contentHeight - containerHeight;
+            const scrollRatio = mouseY / containerHeight; // Proporção da posição do mouse
+            const scrollPosition = scrollRatio * maxScroll;
+
+            pdfFrame.contentWindow.scrollTo(0, scrollPosition);
         }
 
-        function startDraggingPDFTouch(event) {
-            isDraggingPDF = true;
-            pdfStartY = event.touches[0].clientY;
-            scrollTop = pdfFrame.contentWindow.scrollY || 0;
-            event.preventDefault(); // Impede a propagação
+        function toggleZoom() {
+            if (!isZoomed) {
+                zoomLevel = 2; // Aplica zoom de 200%
+                isZoomed = true;
+            } else {
+                zoomLevel = 1; // Remove zoom, volta ao normal
+                isZoomed = false;
+            }
+            pdfFrame.style.transform = `scale(${zoomLevel})`;
+            pdfFrame.style.transformOrigin = 'top center'; // Zoom a partir do topo
         }
 
-        function dragPDF(event) {
-            if (!isDraggingPDF) return;
-            const currentY = event.clientY;
-            const diffY = pdfStartY - currentY;
-            pdfFrame.contentWindow.scrollTo(0, scrollTop + diffY * zoomLevel);
-            event.preventDefault(); // Impede a propagação
-        }
-
-        function dragPDFTouch(event) {
-            if (!isDraggingPDF) return;
-            const currentY = event.touches[0].clientY;
-            const diffY = pdfStartY - currentY;
-            pdfFrame.contentWindow.scrollTo(0, scrollTop + diffY * zoomLevel);
-            event.preventDefault(); // Impede a propagação
-        }
-
-        function stopDraggingPDF() {
-            isDraggingPDF = false;
-        }
-
-        // Funções de Zoom
+        // Funções de Zoom com botões
         function zoomIn() {
             zoomLevel += 0.2;
             if (zoomLevel > 2) zoomLevel = 2; // Limite máximo de zoom (200%)
+            isZoomed = zoomLevel > 1;
             pdfFrame.style.transform = `scale(${zoomLevel})`;
-            pdfFrame.style.transformOrigin = 'top center'; // Zoom a partir do topo
+            pdfFrame.style.transformOrigin = 'top center';
         }
 
         function zoomOut() {
             zoomLevel -= 0.2;
             if (zoomLevel < 0.5) zoomLevel = 0.5; // Limite mínimo de zoom (50%)
+            isZoomed = zoomLevel > 1;
             pdfFrame.style.transform = `scale(${zoomLevel})`;
-            pdfFrame.style.transformOrigin = 'top center'; // Zoom a partir do topo
+            pdfFrame.style.transformOrigin = 'top center';
         }
 
         // Funções de Navegação
